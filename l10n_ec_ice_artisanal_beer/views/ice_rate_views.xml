@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="l10n_ec_ice_rate_view_tree" model="ir.ui.view">
+        <field name="name">l10n_ec.ice.rate.tree</field>
+        <field name="model">l10n_ec.ice.rate</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="ice_code"/>
+                <field name="min_alcohol_degree"/>
+                <field name="max_alcohol_degree"/>
+                <field name="rate_per_liter_pure_alcohol"/>
+                <field name="date_from" optional="hide"/>
+                <field name="date_to" optional="hide"/>
+                <field name="company_id" groups="base.group_multi_company" optional="show"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="l10n_ec_ice_rate_view_form" model="ir.ui.view">
+        <field name="name">l10n_ec.ice.rate.form</field>
+        <field name="model">l10n_ec.ice.rate</field>
+        <field name="arch" type="xml">
+            <form string="Tarifa ICE">
+                <sheet>
+                    <group>
+                        <group string="General">
+                            <field name="name"/>
+                            <field name="ice_code"/>
+                            <field name="rate_per_liter_pure_alcohol"/>
+                            <field name="active" invisible="1"/>
+                        </group>
+                        <group string="Rango de Grado Alcohólico">
+                            <field name="min_alcohol_degree"/>
+                            <field name="max_alcohol_degree"
+                                   help="Establecer en 0 si no tiene límite superior"/>
+                        </group>
+                    </group>
+                    <group string="Periodo de Vigencia">
+                        <group>
+                            <field name="date_from"/>
+                            <field name="date_to"/>
+                        </group>
+                        <group>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="l10n_ec_ice_rate_action" model="ir.actions.act_window">
+        <field name="name">Tarifas ICE</field>
+        <field name="res_model">l10n_ec.ice.rate</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Configure las tarifas del ICE para cerveza artesanal
+            </p>
+            <p>
+                Defina la tarifa específica del ICE por litro de alcohol puro.
+                La tarifa se aplica según el grado alcohólico del producto.
+            </p>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Definición del reporte PDF -->
+    <record id="action_report_ice_105" model="ir.actions.report">
+        <field name="name">Reporte ICE 105</field>
+        <field name="model">l10n_ec.ice.report105.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">l10n_ec_ice_artisanal_beer.report_ice_105_document</field>
+        <field name="report_file">l10n_ec_ice_artisanal_beer.report_ice_105_document</field>
+        <field name="print_report_name">'Reporte_ICE_105_%s_%s' % (object.year, object.month or '00')</field>
+    </record>
+
+    <!-- Template principal del reporte -->
+    <template id="report_ice_105_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="wizard">
+                <t t-call="l10n_ec_ice_artisanal_beer.report_ice_105_content"/>
+            </t>
+        </t>
+    </template>
+
+    <!-- Contenido del reporte -->
+    <template id="report_ice_105_content">
+        <t t-set="report_data" t-value="wizard._get_report_data()"/>
+        <t t-set="company" t-value="wizard.company_id"/>
+
+        <div class="page">
+            <!-- Encabezado -->
+            <div class="row mb-4">
+                <div class="col-12 text-center">
+                    <h2>Reporte ICE - Anexo 105</h2>
+                    <h4 t-esc="company.l10n_ec_legal_name or company.name"/>
+                    <p>
+                        <strong>RUC:</strong> <span t-field="company.vat"/>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Información del periodo -->
+            <div class="row mb-4">
+                <div class="col-6">
+                    <table class="table table-sm table-borderless" style="width: auto;">
+                        <tr>
+                            <td class="fw-bold">Periodo:</td>
+                            <td>
+                                <t t-if="wizard.period_type == 'year'">
+                                    Año <t t-esc="wizard.year"/>
+                                </t>
+                                <t t-elif="wizard.period_type == 'month'">
+                                    <t t-esc="dict(wizard._fields['month'].selection).get(wizard.month, '')"/>
+                                    <t t-esc="wizard.year"/>
+                                </t>
+                                <t t-elif="wizard.period_type == 'week'">
+                                    Semana <t t-esc="wizard.week_number"/> -
+                                    <t t-esc="dict(wizard._fields['month'].selection).get(wizard.month, '')"/>
+                                    <t t-esc="wizard.year"/>
+                                </t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold">Desde:</td>
+                            <td><span t-field="wizard.date_from"/></td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold">Hasta:</td>
+                            <td><span t-field="wizard.date_to"/></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-6 text-end">
+                    <p class="text-muted">
+                        Código Operativo: ICE<br/>
+                        Tipo ID Informante: R (RUC)
+                    </p>
+                </div>
+            </div>
+
+            <!-- Tabla de detalle de ventas -->
+            <h5 class="mb-3">Detalle de Ventas ICE</h5>
+            <t t-if="report_data">
+                <table class="table table-sm table-striped">
+                    <thead>
+                        <tr>
+                            <th>Código Producto ICE</th>
+                            <th>Producto</th>
+                            <th class="text-end">Unidades Vendidas</th>
+                            <th class="text-end">Devoluciones</th>
+                            <th class="text-end">Bajas</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-set="total_ventas" t-value="0"/>
+                        <t t-set="total_dev" t-value="0"/>
+                        <t t-set="total_bajas" t-value="0"/>
+                        <t t-foreach="report_data" t-as="row">
+                            <tr>
+                                <td>
+                                    <t t-if="row['codProdICE']">
+                                        <span t-esc="row['codProdICE']" style="font-family: monospace; font-size: 0.85em;"/>
+                                    </t>
+                                    <t t-else="">
+                                        <span class="text-danger">Sin código</span>
+                                    </t>
+                                </td>
+                                <td t-esc="row['product_name']"/>
+                                <td class="text-end" t-esc="row['ventaICE']"/>
+                                <td class="text-end" t-esc="row['devICE']"/>
+                                <td class="text-end" t-esc="row['cantProdBajaICE']"/>
+                            </tr>
+                            <t t-set="total_ventas" t-value="total_ventas + row['ventaICE']"/>
+                            <t t-set="total_dev" t-value="total_dev + row['devICE']"/>
+                            <t t-set="total_bajas" t-value="total_bajas + row['cantProdBajaICE']"/>
+                        </t>
+                    </tbody>
+                    <tfoot>
+                        <tr class="fw-bold">
+                            <td colspan="2">TOTALES</td>
+                            <td class="text-end" t-esc="total_ventas"/>
+                            <td class="text-end" t-esc="total_dev"/>
+                            <td class="text-end" t-esc="total_bajas"/>
+                        </tr>
+                    </tfoot>
+                </table>
+            </t>
+            <t t-else="">
+                <div class="alert alert-info">
+                    No se encontraron ventas con impuesto ICE en el periodo seleccionado.
+                </div>
+            </t>
+
+            <!-- Pie de página -->
+            <div class="row mt-5">
+                <div class="col-12 text-muted text-center" style="font-size: 0.85em;">
+                    <p>
+                        Generado el <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d/%m/%Y %H:%M')"/>
+                        | Reporte ICE Anexo 105 - SRI Ecuador
+                    </p>
+                </div>
+            </div>
+        </div>
+    </template>
+
+</odoo>

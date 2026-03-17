@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <!-- Grupo de impuesto ICE (l10n_ec_type='ice' requerido para integración EDI) -->
+        <record id="tax_group_ice_artisanal_beer" model="account.tax.group">
+            <field name="name">ICE Cerveza Artesanal</field>
+            <field name="l10n_ec_type">ice</field>
+            <field name="sequence">5</field>
+        </record>
+
+        <!-- Impuesto ICE para ventas (cerveza artesanal)
+             amount_type='fixed' con amount=0: el monto real se calcula
+             dinámicamente mediante el override de _compute_amount usando l10n_ec.ice.rate.
+             include_base_amount=True para que el ICE se sume a la base imponible del IVA.
+
+             NOTA: No se definen líneas de repartición explícitas porque Odoo
+             crea automáticamente las líneas por defecto (base 100% + impuesto 100%)
+             al crear el registro account.tax. Definirlas aquí causaría duplicados. -->
+        <record id="tax_ice_sale_artisanal_beer" model="account.tax">
+            <field name="name">ICE Cerveza Artesanal (Venta)</field>
+            <field name="type_tax_use">sale</field>
+            <field name="amount_type">fixed</field>
+            <field name="amount">0</field>
+            <field name="sequence">5</field>
+            <field name="tax_group_id" ref="tax_group_ice_artisanal_beer"/>
+            <field name="include_base_amount" eval="True"/>
+            <field name="description">ICE</field>
+            <field name="invoice_label">ICE Cerveza Artesanal</field>
+        </record>
+
+    </data>
+
+    <data noupdate="1">
+
+        <!-- Tarifa ICE por defecto para cerveza artesanal (código SRI 3023)
+             Tarifa: 14.76 USD por litro de alcohol puro (ajustar según tabla SRI vigente) -->
+        <record id="ice_rate_artisanal_beer_default" model="l10n_ec.ice.rate">
+            <field name="name">Cerveza Artesanal - Tarifa Específica</field>
+            <field name="ice_code">3023</field>
+            <field name="rate_per_liter_pure_alcohol">14.76</field>
+            <field name="min_alcohol_degree">0</field>
+            <field name="max_alcohol_degree">0</field>
+            <field name="active" eval="True"/>
+        </record>
+
+    </data>
+</odoo>

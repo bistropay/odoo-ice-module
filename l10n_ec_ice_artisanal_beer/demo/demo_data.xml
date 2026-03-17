@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Demo product: Artisanal Pale Ale 330ml, 5% ABV -->
+        <record id="demo_product_pale_ale" model="product.product">
+            <field name="name">Cerveza Artesanal Pale Ale 330ml</field>
+            <field name="type">consu</field>
+            <field name="list_price">3.50</field>
+            <field name="l10n_ec_ice_applicable" eval="True"/>
+            <field name="l10n_ec_ice_alcohol_degree">5.0</field>
+            <field name="l10n_ec_ice_volume_ml">330</field>
+            <field name="taxes_id" eval="[(6, 0, [ref('l10n_ec_ice_artisanal_beer.tax_ice_sale_artisanal_beer')])]"/>
+        </record>
+
+        <!-- Demo product: Artisanal Stout 500ml, 8% ABV -->
+        <record id="demo_product_stout" model="product.product">
+            <field name="name">Cerveza Artesanal Stout 500ml</field>
+            <field name="type">consu</field>
+            <field name="list_price">5.00</field>
+            <field name="l10n_ec_ice_applicable" eval="True"/>
+            <field name="l10n_ec_ice_alcohol_degree">8.0</field>
+            <field name="l10n_ec_ice_volume_ml">500</field>
+            <field name="taxes_id" eval="[(6, 0, [ref('l10n_ec_ice_artisanal_beer.tax_ice_sale_artisanal_beer')])]"/>
+        </record>
+
+        <!-- Demo product: Artisanal IPA 355ml, 6.5% ABV -->
+        <record id="demo_product_ipa" model="product.product">
+            <field name="name">Cerveza Artesanal IPA 355ml</field>
+            <field name="type">consu</field>
+            <field name="list_price">4.25</field>
+            <field name="l10n_ec_ice_applicable" eval="True"/>
+            <field name="l10n_ec_ice_alcohol_degree">6.5</field>
+            <field name="l10n_ec_ice_volume_ml">355</field>
+            <field name="taxes_id" eval="[(6, 0, [ref('l10n_ec_ice_artisanal_beer.tax_ice_sale_artisanal_beer')])]"/>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Menú: Configuración > Tarifas ICE -->
+    <menuitem id="menu_ice_configuration"
+              name="Tarifas ICE"
+              parent="account.account_management_menu"
+              action="l10n_ec_ice_rate_action"
+              sequence="50"
+              groups="account.group_account_manager"/>
+
+    <!-- Menú: Reportes > Reporte ICE 105 -->
+    <menuitem id="menu_ice_report_105"
+              name="Reporte ICE 105"
+              parent="account.menu_finance_reports"
+              action="action_ice_report_105_wizard"
+              sequence="99"
+              groups="account.group_account_readonly,account.group_account_invoice"/>
+
+</odoo>

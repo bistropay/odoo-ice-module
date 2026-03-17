@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_product_template_ice_form" model="ir.ui.view">
+        <field name="name">view.product.template.ice.form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="account.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <!-- Colocar campos ICE en la pestaña Contabilidad -->
+            <xpath expr="//page[@name='invoicing']//group[@name='accounting']" position="inside">
+                <group string="ICE - Impuesto a los Consumos Especiales"
+                       invisible="'EC' not in fiscal_country_codes">
+                    <field name="l10n_ec_ice_applicable"
+                           string="Sujeto a ICE"/>
+                    <field name="l10n_ec_ice_alcohol_degree"
+                           string="Grado Alcohólico (%)"
+                           invisible="not l10n_ec_ice_applicable"/>
+                    <field name="l10n_ec_ice_volume_ml"
+                           string="Volumen del Producto (ml)"
+                           invisible="not l10n_ec_ice_applicable"/>
+                    <field name="l10n_ec_ice_product_code"
+                           string="Código Producto ICE (SRI)"
+                           invisible="not l10n_ec_ice_applicable"
+                           placeholder="XXXX-XX-XXXXXX-XXX-XXXXXX-XX-XXX-XXXXXX"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

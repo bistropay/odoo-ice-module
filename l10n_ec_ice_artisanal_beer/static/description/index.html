@@ -1,0 +1,198 @@
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <h2 class="oe_slogan" style="color: #875A7B;">Ecuador ICE Tax - Artisanal Beer</h2>
+            <h3 class="oe_slogan">Complete ICE (Impuesto a los Consumos Especiales) management for artisanal breweries in Ecuador</h3>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <h3 style="color: #875A7B;">Overview</h3>
+            <p style="font-size: 16px;">
+                This module provides a complete solution for managing the ICE tax (Impuesto a los Consumos Especiales)
+                for artisanal breweries operating in Ecuador. It integrates seamlessly with Odoo's Ecuador localization
+                (<strong>l10n_ec_edi</strong>) and handles automatic tax computation, SRI electronic invoicing (EDI),
+                and the official <strong>SRI Form 105</strong> (Anexo 105) report for regulatory compliance.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container oe_dark">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <h3 style="color: #875A7B;">Key Features</h3>
+        </div>
+    </div>
+    <div class="oe_row oe_spaced">
+        <div class="oe_span6">
+            <div class="text-center" style="padding: 15px;">
+                <span style="font-size: 40px; color: #875A7B;">&#128200;</span>
+                <h4>Automatic ICE Calculation</h4>
+                <p>
+                    Computes ICE based on the official formula:
+                    <em>liters of pure alcohol x rate per liter</em>.
+                    Uses alcohol degree, product volume, and configurable rate tiers.
+                    Results are rounded to 2 decimals.
+                </p>
+            </div>
+        </div>
+        <div class="oe_span6">
+            <div class="text-center" style="padding: 15px;">
+                <span style="font-size: 40px; color: #875A7B;">&#128196;</span>
+                <h4>SRI Form 105 Report</h4>
+                <p>
+                    Generate the official Anexo 105 report required by Ecuador's SRI.
+                    Export as <strong>PDF</strong> for internal records or as <strong>XML</strong>
+                    ready to upload to the DIMM platform.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="oe_row oe_spaced">
+        <div class="oe_span6">
+            <div class="text-center" style="padding: 15px;">
+                <span style="font-size: 40px; color: #875A7B;">&#128230;</span>
+                <h4>EDI / Electronic Invoicing</h4>
+                <p>
+                    Full integration with Ecuador's electronic invoicing system.
+                    ICE taxes appear correctly in EDI XML documents sent to the SRI
+                    with the proper tax codes (codigo=3, codigoPorcentaje=3023).
+                </p>
+            </div>
+        </div>
+        <div class="oe_span6">
+            <div class="text-center" style="padding: 15px;">
+                <span style="font-size: 40px; color: #875A7B;">&#9881;</span>
+                <h4>Configurable Rate Tiers</h4>
+                <p>
+                    Manage ICE rate tiers with date ranges and alcohol degree thresholds.
+                    Easily update rates when SRI regulations change without modifying code.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <h3 style="color: #875A7B;">How It Works</h3>
+            <table class="table" style="font-size: 15px;">
+                <thead>
+                    <tr>
+                        <th style="width: 40px;">#</th>
+                        <th>Step</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>1</strong></td>
+                        <td><strong>Configure Products</strong></td>
+                        <td>Mark your beer products as "ICE Applicable" and enter alcohol degree (%) and volume (ml).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>2</strong></td>
+                        <td><strong>Set ICE Rates</strong></td>
+                        <td>Configure ICE rate tiers under Accounting &gt; Configuration &gt; ICE Rates. Set the rate per liter of pure alcohol.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>3</strong></td>
+                        <td><strong>Create Invoices</strong></td>
+                        <td>When you create a customer invoice with ICE-applicable products, the ICE tax is computed automatically and added to the invoice.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>4</strong></td>
+                        <td><strong>Send to SRI</strong></td>
+                        <td>Electronic invoices include ICE tax data in the correct XML format for SRI validation.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>5</strong></td>
+                        <td><strong>Generate Form 105</strong></td>
+                        <td>Go to Accounting &gt; Reports &gt; ICE Report 105. Select the period, then download as PDF or XML for DIMM upload.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container oe_dark">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <h3 style="color: #875A7B;">ICE Tax Calculation Formula</h3>
+            <div style="background: #f8f9fa; border-radius: 8px; padding: 20px; margin: 15px 0; border-left: 4px solid #875A7B;">
+                <p style="font-size: 16px; margin: 0;">
+                    <strong>ICE = (Volume in ml / 1000) x (Alcohol Degree / 100) x Quantity x Rate per Liter of Pure Alcohol</strong>
+                </p>
+                <p style="margin-top: 10px; color: #666;">
+                    Example: A 330ml beer at 5% ABV, quantity 100 units, rate $10/liter:<br/>
+                    ICE = (330/1000) x (5/100) x 100 x 10 = <strong>$16.50</strong>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <h3 style="color: #875A7B;">Product Configuration Fields</h3>
+            <ul style="font-size: 15px;">
+                <li><strong>ICE Applicable:</strong> Enable ICE tax computation for this product</li>
+                <li><strong>Alcohol Degree (%):</strong> Alcohol by volume (ABV) percentage</li>
+                <li><strong>Product Volume (ml):</strong> Volume per unit in milliliters</li>
+                <li><strong>ICE Product Code (SRI):</strong> Official SRI product code for Form 105 reporting</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container oe_dark">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <h3 style="color: #875A7B;">Form 105 XML Export</h3>
+            <p style="font-size: 15px;">
+                The XML export follows the official SRI XSD schema for the ICE Anexo 105. The generated file
+                is ready to upload directly to the <strong>DIMM</strong> application. It includes:
+            </p>
+            <ul style="font-size: 15px;">
+                <li>Company identification (RUC, legal name)</li>
+                <li>Reporting period (year and month)</li>
+                <li>Sales detail grouped by ICE product code</li>
+                <li>Return quantities from credit notes</li>
+                <li>Sugar content field (gramoAzucar) as required by SRI</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <h3 style="color: #875A7B;">Compatibility</h3>
+            <ul style="font-size: 15px;">
+                <li>Odoo 17 Community and Enterprise</li>
+                <li>Requires: Ecuador EDI localization module (<code>l10n_ec_edi</code>)</li>
+                <li>Compatible with existing tax configurations and accounting workflows</li>
+                <li>ICE tax is added to the VAT taxable base (include_base_amount) as required by Ecuadorian tax law</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container oe_dark">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <h3 style="color: #875A7B;">Support</h3>
+            <p style="font-size: 15px;">
+                For technical support, bug reports, or feature requests, please contact us at
+                <strong>soporte@bistro-pay.com</strong>. We are committed to resolving any issues in a timely fashion.
+            </p>
+        </div>
+    </div>
+</section>
