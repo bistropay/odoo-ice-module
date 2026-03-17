@@ -14,9 +14,20 @@
             <p style="font-size: 16px;">
                 This module provides a complete solution for managing the ICE tax (Impuesto a los Consumos Especiales)
                 for artisanal breweries operating in Ecuador. It integrates seamlessly with Odoo's Ecuador localization
-                (<strong>l10n_ec_edi</strong>) and handles automatic tax computation, SRI electronic invoicing (EDI),
+                and handles automatic tax computation, SRI electronic invoicing (EDI),
                 and the official <strong>SRI Form 105</strong> (Anexo 105) report for regulatory compliance.
             </p>
+        </div>
+    </div>
+</section>
+
+<!-- Screenshot: Invoice with ICE tax -->
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12 text-center">
+            <h3 style="color: #875A7B;">ICE Tax on Invoices</h3>
+            <p style="font-size: 15px;">ICE tax is automatically computed and displayed on customer invoices.</p>
+            <img class="oe_picture oe_screenshot" src="screenshot_invoice.png" alt="Invoice with ICE tax calculated" style="max-width: 100%; border: 1px solid #ddd; border-radius: 4px;"/>
         </div>
     </div>
 </section>
@@ -77,6 +88,17 @@
     </div>
 </section>
 
+<!-- Screenshot: Product configuration -->
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12 text-center">
+            <h3 style="color: #875A7B;">Product Configuration</h3>
+            <p style="font-size: 15px;">Set up your beer products with alcohol degree, volume, and the official SRI product code.</p>
+            <img class="oe_picture oe_screenshot" src="screenshot_product.png" alt="Product with ICE fields configured" style="max-width: 100%; border: 1px solid #ddd; border-radius: 4px;"/>
+        </div>
+    </div>
+</section>
+
 <section class="oe_container">
     <div class="oe_row oe_spaced">
         <div class="oe_span12">
@@ -121,7 +143,20 @@
     </div>
 </section>
 
+<!-- Screenshots: ICE Rates configuration -->
 <section class="oe_container oe_dark">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12 text-center">
+            <h3 style="color: #875A7B;">ICE Rate Configuration</h3>
+            <p style="font-size: 15px;">Navigate to Accounting &gt; Configuration &gt; ICE Rates to manage tax rate tiers.</p>
+            <img class="oe_picture oe_screenshot" src="screenshot_rates_option.png" alt="ICE Rates menu option" style="max-width: 100%; border: 1px solid #ddd; border-radius: 4px; margin-bottom: 20px;"/>
+            <p style="font-size: 15px;">Configure rates per liter of pure alcohol, with date ranges and alcohol degree thresholds.</p>
+            <img class="oe_picture oe_screenshot" src="screenshot_rates.png" alt="ICE Rates configuration view" style="max-width: 100%; border: 1px solid #ddd; border-radius: 4px;"/>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container">
     <div class="oe_row oe_spaced">
         <div class="oe_span12">
             <h3 style="color: #875A7B;">ICE Tax Calculation Formula</h3>
@@ -152,6 +187,30 @@
     </div>
 </section>
 
+<!-- Screenshots: Form 105 Report -->
+<section class="oe_container oe_dark">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12 text-center">
+            <h3 style="color: #875A7B;">SRI Form 105 Report (Anexo 105)</h3>
+            <p style="font-size: 15px;">Access the report from Accounting &gt; Reports &gt; ICE Report 105.</p>
+            <img class="oe_picture oe_screenshot" src="105_option.png" alt="Form 105 menu option" style="max-width: 100%; border: 1px solid #ddd; border-radius: 4px; margin-bottom: 20px;"/>
+            <p style="font-size: 15px;">Select the reporting period and generate the report as PDF or XML.</p>
+            <img class="oe_picture oe_screenshot" src="screenshot_report105.png" alt="Form 105 wizard" style="max-width: 100%; border: 1px solid #ddd; border-radius: 4px;"/>
+        </div>
+    </div>
+</section>
+
+<!-- Screenshot: PDF report -->
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12 text-center">
+            <h3 style="color: #875A7B;">PDF Report Output</h3>
+            <p style="font-size: 15px;">Download a detailed PDF report for internal records and audits.</p>
+            <img class="oe_picture oe_screenshot" src="screenshot_pdf.png" alt="Generated PDF report" style="max-width: 100%; border: 1px solid #ddd; border-radius: 4px;"/>
+        </div>
+    </div>
+</section>
+
 <section class="oe_container oe_dark">
     <div class="oe_row oe_spaced">
         <div class="oe_span12">
@@ -171,13 +230,25 @@
     </div>
 </section>
 
+<!-- Screenshot: SRI DIMM validation success -->
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12 text-center">
+            <h3 style="color: #875A7B;">SRI DIMM Validation</h3>
+            <p style="font-size: 15px;">The generated XML file is validated and accepted by the SRI DIMM platform.</p>
+            <img class="oe_picture oe_screenshot" src="sri_response.jpeg" alt="SRI DIMM successful validation response" style="max-width: 100%; border: 1px solid #ddd; border-radius: 4px;"/>
+        </div>
+    </div>
+</section>
+
 <section class="oe_container">
     <div class="oe_row oe_spaced">
         <div class="oe_span12">
             <h3 style="color: #875A7B;">Compatibility</h3>
             <ul style="font-size: 15px;">
                 <li>Odoo 17 Community and Enterprise</li>
-                <li>Requires: Ecuador EDI localization module (<code>l10n_ec_edi</code>)</li>
+                <li>Requires: Ecuador localization module (<code>l10n_ec</code>)</li>
+                <li>Optional: When <code>l10n_ec_edi</code> (Enterprise) is installed, ICE taxes integrate automatically with SRI electronic invoicing</li>
                 <li>Compatible with existing tax configurations and accounting workflows</li>
                 <li>ICE tax is added to the VAT taxable base (include_base_amount) as required by Ecuadorian tax law</li>
             </ul>
